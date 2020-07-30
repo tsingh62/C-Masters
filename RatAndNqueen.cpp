@@ -1,0 +1,216 @@
+#include <iostream>
+
+using namespace std;
+
+bool isSafe(int board[4][4], int row, int col, int n) {
+
+	// COLUMN
+	for (int i = row; i >= 0; i--) {
+		if (board[i][col] == 1) {
+			return false;
+		}
+	}
+
+	// LEFT DIAGONALS
+
+	int x = row;
+	int y = col;
+
+	while (x >= 0 and y >= 0) {
+		// cout << "( " << x << "," << y << " )" << " -> " << board[x][y] << endl;
+
+		if (board[x][y] == 1) {
+			return false;
+		}
+
+		x--;
+		y--;
+	}
+
+	// cout << "Loop has ended" << endl;
+
+	// RIGHT DIAGONALS
+
+	x = row;
+	y = col;
+
+	while (x >= 0 and y < n) {
+
+		if (board[x][y] == 1) {
+			return false;
+		}
+
+		x--;
+		y++;
+	}
+
+	return true;
+}
+
+bool NQueens(int board[4][4], int row, int n) {
+	//BASE CASE
+	if (row == n) {
+		//PRINT
+
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+
+				if (board[i][j]) {
+					cout << "Q ";
+				} else {
+					cout << "_ ";
+				}
+			}
+			cout << endl;
+		}
+
+		cout << "********************************" << endl;
+
+		return true;// for printing convert to -> return false;
+	}
+
+
+	//RECURSIVE CASE
+	for (int col = 0; col < n; col++) {
+
+		// row = 1
+		// col = 2->3
+
+		if (isSafe(board, row, col, n)) {
+
+			board[row][col] = 1; // my work
+
+			bool rest_of_the_queens = NQueens(board, row + 1, n); // recursion
+
+			// if (rest_of_the_queens) { // if orientation is correct
+			// 	return true; 			// return true
+			// }
+
+			// if we here that means the subproblem was false
+			board[row][col] = 0; // remove your current queen !BACKTRAKCING!
+		}
+
+	}
+
+	return false;
+}
+
+int countNQueens(int board[4][4], int row, int n) {
+	//BASE CASE
+	if (row == n) {
+		return 1;
+	}
+
+	int count = 0;
+
+	for (int col = 0; col < n; col++) {
+
+		if (isSafe(board, row, col, n)) {
+
+			board[row][col] = 1; // my work
+
+			count += countNQueens(board, row + 1, n); // recursion
+
+			board[row][col] = 0; //backtracking
+		}
+	}
+
+	return count;
+}
+/*
+bool ratInAMaze(char maze[4][4], int sr, int sc, int er, int ec, int sol[4][4]) {
+	//BASE CASE
+	if (sr == er and sc == ec) {
+		// PRINT
+		sol[er][ec] = 1;
+		for (int i = 0; i <= er; i++) {
+			for (int j = 0; j <= ec; j++) {
+				cout << sol[i][j] << " ";
+			}
+			cout << endl;
+		}
+		cout << "*****************" << endl;
+
+		return true;
+	}
+
+	if (sr > er or sc > ec) {
+		return false;
+	}
+
+	if (maze[sr][sc] == 'X') {
+		return false;
+	}
+
+	sol[sr][sc] = 1;
+
+	// RECURSIVE CASE
+	bool rightMove = ratInAMaze(maze, sr, sc + 1, er, ec, sol);
+	bool downMove = ratInAMaze(maze, sr + 1, sc, er, ec, sol);
+
+	// sol[sr][sc] = 0; // backtracking
+
+	if (rightMove or downMove) {
+		return true;
+	}
+
+	return false;
+}
+
+void printRatInAMaze(char maze[4][4], int sr, int sc, int er, int ec, int sol[4][4]) {
+	if (sr == er and sc == ec) {
+		// PRINT
+		sol[er][ec] = 1;
+
+		for (int i = 0; i <= er; i++) {
+			for (int j = 0; j <= ec; j++) {
+				cout << sol[i][j] << " ";
+			}
+			cout << endl;
+		}
+		cout << "*****************" << endl;
+
+		return;
+	}
+
+	if (sr > er or sc > ec) {
+		return;
+	}
+
+	if (maze[sr][sc] == 'X') {
+		return;
+	}
+
+	sol[sr][sc] = 1;
+
+	// RECURSIVE CASE
+	printRatInAMaze(maze, sr, sc + 1, er, ec, sol);
+	printRatInAMaze(maze, sr + 1, sc, er, ec, sol);
+
+	// my right and down work is done now thats why i'm here
+	sol[sr][sc] = 0;
+}
+
+*/
+
+int main() {
+
+	int board[4][4] = {0};
+	int n = 4;
+//	cout << countNQueens(board, 0, n) << endl;
+
+	 cout << NQueens(board, 0, n) << endl;
+
+	// int n = 4;
+	// char maze[4][4] = { {'0', '0', '0', '0'},
+	// 	{'0', '0', 'X', '0'},
+	// 	{'0', '0', '0', '0'},
+	// 	{'X', '0', '0', '0'}
+	// };
+
+	// int sol[4][4] = {0};
+
+	// cout << ratInAMaze(maze, 0, 0, n - 1, n - 1, sol) << endl;
+	// printRatInAMaze(maze, 0, 0, n - 1, n - 1, sol);
+	return 0;
+}
