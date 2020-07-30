@@ -6,6 +6,8 @@
 
 using namespace std;
 
+//g++ sample.cpp -std=c++11
+
 class TreeNode
 {
 	public:

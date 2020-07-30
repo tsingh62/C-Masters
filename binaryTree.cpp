@@ -4,6 +4,7 @@
 #include<stack>
 #include<queue>
 
+//g++ sample.cpp -std=c++11
 using namespace std;
 
 class TreeNode
