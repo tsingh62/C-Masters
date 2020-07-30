@@ -70,65 +70,44 @@ TreeNode *builtBST(TreeNode *root, int data)
 	}
 	return root;	
 }
-
-class Solution
+// build from preorder to inorder
+int preOrderIndex;
+// build from preorder to inorder
+TreeNode *buildTreeFromPreOrderInder(int pre[], int in[], int start, int end)
 {
-	public:
-
-	int numTrees(int n)
-	{
-		// base case
-		if(n==0 || n==1)
+		// base case;
+		if(start > end)
 		{
-			return 1;
+			return NULL;
 		}
-		int ans =0;
+		int data = pre[preOrderIndex];
+		TreeNode *root = new TreeNode(data);
+		int mid;
 
-		for(int i=1; 0<=n; i++)
+		for(int i=start; i<=end; i++)
 		{
-			int leftBSTCount = numTrees(i-1);
-			int rightBSTCount = numTrees(n-i);
-
-			int myCount = leftBSTCount * rightBSTCount;
-			ans+=myCount;
+			if(in[i]==data)
+			{
+				mid=i;
+				break;
+			}
 		}
-		return ans;
-	}
+	preOrderIndex++;
+	root->left = buildTreeFromPreOrderInder(pre, in, start, mid-1);
+	root->right = buildTreeFromPreOrderInder(pre, in, mid+1, end);
 
-};
-// int numTrees(int n)
-// 	{
-// 		// base case
-// 		if(n==0 || n==1)
-// 		{
-// 			return 1;
-// 		}
-// 		int ans =0;
-
-// 		for(int i=1; 0<=n; i++)
-// 		{
-// 			int leftBSTCount = numTrees(i-1);
-// 			int rightBSTCount = numTrees(n-i);
-
-// 			int myCount = leftBSTCount * rightBSTCount;
-// 			ans+=myCount;
-// 		}
-// 		return ans;
-// 	}
-
-// int main()
-// {
-// 	TreeNode *root = NULL;
-// 	root = buildTree(root);
-// 	int n=5;
-// 	cout << numTrees(5) << endl;
-// 	return 0;
-	
-// }
+	return root;
+}
 int main()
 {
 	TreeNode *root = NULL;
 	root = buildTree(root);
+	
+	// Preorder and Inorder
+	int pre[]={4,2,1,3,5,8,7};
+	int in[]={1,2,3,4,8,5,7};
+	int n=7;
+
 	return 0;
 	
 }
