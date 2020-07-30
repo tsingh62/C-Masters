@@ -1,6 +1,5 @@
 
 // Dynamic Programming
-
 // g++ sample.cpp -std=c++11
 
 #include<iostream>
@@ -22,6 +21,7 @@ int fib(int n)
 	return fibn;
 }
 
+// Dp
 int check2=0;
 int fibmemo(int n, int dp[])
 {
@@ -52,21 +52,40 @@ int fibmemo(int n, int dp[])
 
 }
 
+// Pure Dp
+int fibPureDp(int n)
+{
+	int dp[n+1];
+	dp[0]=0;
+	dp[1]=1;
+
+	for(int i=2; i<=n; i++)
+	{
+		dp[i]=dp[i-1]+dp[i-2];
+	}
+	return dp[n];
+}
+
 int main()
 {
 	int n=10;
-	cout << fib(n) << endl;
+	// cout << fib(n) << endl;
 
-	int dp[n+1];
+	// int dp[n+1];
 	 
-	// take your dp array // get the size of your dp array
-	memset(dp,-1,      sizeof(dp));
-	// fill your dp with -1
-	// memset key word inbuilt function
+	// // take your dp array // get the size of your dp array
+	// memset(dp,-1,      sizeof(dp));
+	// // fill your dp with -1
+	// // memset key word inbuilt function
 
-	cout << fibmemo(n,dp) << endl;
+	// cout << fibmemo(n,dp) << endl;
 
-	cout << "Number of function call for fib " << check1 << endl;
-	cout << "Number of fucction call for fib " << check2 << endl;
+	// cout << "Number of function call for fib " << check1 << endl;
+	// cout << "Number of fucction call for fib " << check2 << endl;
+	
+	//***************** fib pure dp ******************//
+	// for pure Dp
+
+	cout << fibPureDp(n) << endl;
 	return 0;
 }
