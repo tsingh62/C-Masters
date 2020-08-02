@@ -11,8 +11,7 @@ class solution
 	int rob(vector<int> &nums)
 	{
 		int n = nums.size();
-	//	vector <int> dp(n+1, -1);
-
+	
 		vector<int> dp(n+2);
 
 		//base case
