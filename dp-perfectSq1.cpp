@@ -53,4 +53,3 @@ int main()
 	cout << n << endl;
 	return 0;
 }
-//g++ sample.cpp -std=c++11
