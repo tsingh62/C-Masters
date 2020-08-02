@@ -94,7 +94,7 @@ int main()
 	memset(dp, -1, sizeof(dp));
 	cout << reduceToOneMemo(n,dp) << endl;
 
-
+//********* Pure Dp ************//
 	cout << reduceToOnePureDp(n) << endl;
 	return 0;
 }

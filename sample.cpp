@@ -1,100 +1,99 @@
 
-// Dynamic Programming
-// g++ sample.cpp -std=c++11
 
 #include<iostream>
 using namespace std;
 
+// Count board path
 
-
-//*********** Reduced to one *****************//
-int reduceToOneMemo(int n, int dp[])
+int countBoardPath(int start, int end)
 {
-	if (n==1)
+	if(start == end)
+	{
+		return 1;
+	}
+	if(start > end)
 	{
 		return 0;
 	}
-	// if you have already computed the nth
-	// value in your dp
-	if(dp[n]!=-1) // -1 empty with -1 value
+	int count =0;
+	for(int jump=1; jump<=6; jump++)
 	{
-		return dp[n];
-		// if its not -1 then the dp is full
-		// return that value
+		count +=countBoardPath(start + jump, end);
 	}
-	int count1 = INT_MAX;
-	int count2 = INT_MAX;
-	int count3 = INT_MAX;
-
-	if(n%2==0)
-	{
-		count2 = reduceToOneMemo(n/2, dp);
-	}
-	if(n%3 == 0)
-	{
-		count3 = reduceToOneMemo(n/3, dp);
-	}
-
-	count1 = reduceToOneMemo(n-1, dp);
-	int minValue = min(count1, min(count2,count3));
-
-	minValue +=1;
-
-	dp[n]=minValue;
-	return minValue;
-
+	return count;
 }
-
-// Pure Dp
-int reduceToOnePureDp(int n)
+// memoziation
+int countBoardPathMemo(int start, int end, int dp[])
 {
-	int dp[n+1];
-
-	// base case
-	dp[1]=0;
-	dp[2]=1;
-	dp[3]=1;
-
-	for(int i=4 ; i<=n; i++)
+	if(start == end)
 	{
-		// recursive case
-		// reduceToOne(i); ->dp[i];
-		
-
-		int count1 = INT_MAX;
-		int count2 = INT_MAX;
-		int count3 = INT_MAX;
-
-		if(i%2 == 0)
-		{
-			count2 = dp[i/2];
-		}
-		if(i % 3 ==0)
-		{
-			count3 = dp[i/3];
-		}
-		count1 = dp[i-1];
-
-		int minValue = min(count1, min(count2,count3));
-
-		minValue++;
-
-		dp[i] = minValue;
+		dp[start]=1;
+		return 1;
 	}
-	return dp[n];
+	if(start > end)
+	{
+		return 0;
+	}
+	// check of the given value
+	// input/state already exists in your 
+	// dp or not
+	if(dp[start]!=-1)
+	{
+		return dp[start];
+	}
+	int count =0;
+	for(int jump=1; jump<=6; jump++)
+	{
+		count +=countBoardPathMemo(start + jump, end, dp);
+	}
+	dp[start] = count;
+	// before returning to your parent call
+	// just store the answer for this input/state in your dp
 
+	// for printing values
+	for(int i=0; i<=end; i++)
+	{
+		cout << dp[i] << "\t";
+	}
+	return count;
+}
+// Pure Dp
+int countBoardPathPureDp(int start, int end)
+{
+	int dp[end+1];
+
+	// Base case
+	dp[end]=1;
+
+	for(int i=end-1; i>=start; i--)
+	{
+		// recurssive case
+		int count =0;
+		for(int jump=1; jump<=6; jump++)
+		{
+			if(jump+i <= end)
+			{
+				count+=dp[i+jump];
+			}
+			else
+			{
+			break;
+			}
+			
+		}
+		dp[i]=count;
+	}
+	return dp[start];
 }
 
 int main()
 {
-	int n=10;
-//	cout << reduceToOneMemo(n) << endl;
-
-	int dp[n+1];
-	memset(dp, -1, sizeof(dp));
-	cout << reduceToOneMemo(n,dp) << endl;
-
-
-	cout << reduceToOnePureDp(n) << endl;
+	int start=0;
+	int end =10;
+	int dp[end+1];
+	memset(dp,-1, sizeof(dp));
+	cout << countBoardPathMemo(start, end, dp) << endl;
+	cout << "************************" << endl;
+	cout << countBoardPathPureDp(start, end) << endl;
 	return 0;
 }
