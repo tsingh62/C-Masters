@@ -4,7 +4,8 @@
 #include<vector>
 using namespace std;
 
-class solution
+//class solution
+struct solution
 {
 	vector<int> v;
 	bool minHeap;
@@ -46,7 +47,7 @@ class solution
 			}
 	}
 
-public:
+//public:
 	
 	Heap(int default_size=10, bool type = true)
 	{
@@ -95,6 +96,11 @@ public:
 		swap(v[1], v[last]);
 		v.pop_back();
 		heapify(1);
+    //******************//
+        // swap(v[0], v.back());
+		// 		//last of v 
+		// v.pop_back(); // last one is removed
+		// heapify(1); 
 		
 	}
 	bool empty()
@@ -106,8 +112,8 @@ public:
 
 int main()
 {
-	solution s;
-	s::Heap  = h;
+	solution H;
+	H.heapify();
 	int n;
 
 	cin >> n;
