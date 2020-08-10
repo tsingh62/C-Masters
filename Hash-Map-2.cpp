@@ -20,7 +20,8 @@ int main()
 			cout << x.first << " " << x.second << '\n';
 		}
 	// not in order but the values are getting hashed
-	if(mp.count(1))
+
+    if(mp.count(1))
     {
         cout << "Yes present \n";
         cout << mp[1] << '\n';
@@ -28,6 +29,7 @@ int main()
     else
     {
         cout << "Not present \n";
-    }	
+    }
+    
 }
 // g++ sample.cpp -std=c++11

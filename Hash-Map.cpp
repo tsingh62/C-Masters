@@ -54,3 +54,5 @@ int main()
 	
 
 }
+
+// g++ sample.cpp -std=c++11
