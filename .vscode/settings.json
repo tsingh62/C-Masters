@@ -6,6 +6,9 @@
         "algorithm": "cpp",
         "utility": "cpp",
         "tuple": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "__hash_table": "cpp",
+        "unordered_map": "cpp",
+        "map": "cpp"
     }
 }
