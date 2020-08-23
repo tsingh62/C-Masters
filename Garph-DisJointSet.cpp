@@ -51,36 +51,24 @@ void solve()
 {
     int i, j, k, n, m, ans=0, cnt=0, sum=0;
     cin >> n >> m;
-    G.init(n); // 0-> n-1
-    bool cycle =0;
+    G.init(n);
     for(int i=0; i<m; i++)
     {
         int x,y;
         cin >> x >> y;
-        x--; y--;
-        // converting the graph into
-        // Zero base index
-        if(G.get_superparent(x)!= G.get_superparent(y))
-        {
-            // different component
-            G.uNion(x,y);
-        }
-        else
-        {
-            //same component
-            // there was a path from x to y
-            cycle = 1;
-            cout << "This edge will give me a cycle \n";
-        }
+        G.uNion(x,y);
+        
     }
-     if(cycle)
-        {
-             cout << "Cycle in the graph \n";
-        }
-        else 
-        {
-            cout << "No cycle in the graph \n";
-        }
+    // all elements  are in theri connected components
+    for(int i=0; i<n; i++)
+    {
+// i is considered as x
+        int super_parent_i = G.get_superparent(i);
+        ans += n - G.sz[super_parent_i];
+    }
+    cout << ans/2;
+    // since there are 12 pairs and the values are 
+    // repeated 2 times so we need to divide the ans/2
 }
 
 int32_t main()
@@ -96,10 +84,9 @@ int32_t main()
 //g++ sample.cpp -std=c++11
 
 // input
-// 4 4
-// 1 2
+// 5 3
+// 0 1
 // 2 3
-// 3 4
-// 1 4
+// 0 4
 
 
