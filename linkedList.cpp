@@ -321,44 +321,44 @@ int main()
 	insertAtTail(head,45);
 	display(head);
 
-	insertAtAnyIndex(head,18,3);
+	// insertAtAnyIndex(head,18,3);
 
-	display(head);
-	cout <<size(head) << endl;
+	// display(head);
+	// cout <<size(head) << endl;
 
-	deleteAtHead(head);
-	display(head);
+	// deleteAtHead(head);
+	// display(head);
 
-	deleteAtTail(head);
-	display(head);
+	// deleteAtTail(head);
+	// display(head);
 
-	search(head, 23);
+	// search(head, 23);
 
-	insertAtAnyIndex(head, 97, 5);
-	display(head);
-	deleteAtAYnyIndx(head, 4);
-	display(head);
+	// insertAtAnyIndex(head, 97, 5);
+	// display(head);
+	// deleteAtAYnyIndx(head, 4);
+	// display(head);
 
-	// midpoint
+	// // midpoint
 	
-	listNode* mid = midPoint(head);
-	cout << mid->val << endl;
+	// listNode* mid = midPoint(head);
+	// cout << mid->val << endl;
 
 	
-	deleteAtAYnyIndx(head,3);
+	// deleteAtAYnyIndx(head,3);
 
-	display(head);
+	// display(head);
 
-	mid = midPoint(head);
-	cout << mid->val << endl;
+	// mid = midPoint(head);
+	// cout << mid->val << endl;
 
-	// // reverse recursive 
-	head = reverseRecrusive(head);
-	display(head);
+	// // // reverse recursive 
+	// head = reverseRecrusive(head);
+	// display(head);
 
-	// reverse iterative 
-	head = reverseItr(head);
-	display(head);
+	// // reverse iterative 
+	// head = reverseItr(head);
+	// display(head);
 
 	// merge two sorted linked list
 
