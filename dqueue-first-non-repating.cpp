@@ -5,7 +5,7 @@
 #include<iostream>
 #include<deque>
 using namespace std;
-
+ 
 void printFirstNonRepating()
 {
 	deque <int> q;
@@ -53,3 +53,7 @@ int main()
 	printFirstNonRepating();
 
 }
+
+// g++ sample.cpp -std=c++11
+// input 
+// aabccbxhx.
