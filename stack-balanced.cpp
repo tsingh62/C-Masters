@@ -44,9 +44,6 @@ bool isBalanced(string str)
 int main()
 {	
 	
-
-
-	
 	cout << isBalanced("((()))(") << endl; // false
 	cout << isBalanced("(())()") << endl; //true
 	cout << isBalanced("((())") << endl; // false

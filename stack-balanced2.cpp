@@ -51,7 +51,7 @@ int main()
 
 	
 	cout << isBalanced("((a+b))") << endl; // true
-	cout << isBalanced("(a+b") << endl; //true
+	cout << isBalanced("(a+b") << endl; //false
 	 cout << isBalanced("(a+b)+c") << endl; // false
 	// cout << isBalanced("()") << endl; // true
 

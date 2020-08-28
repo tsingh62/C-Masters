@@ -20,7 +20,7 @@ int histrogramArea(int arr[], int n)
 			// if you are here means your index value
 			// is acting as the next smaller for the
 			// current stack top element
-			// next smaller for the current wlement on the top
+			// next smaller for the current element on the top
 			int extactTop = s.top();
 			s.pop();
 			int height = arr[extactTop];
