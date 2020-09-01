@@ -159,11 +159,33 @@ bool isBST(TreeNode *root, int minRange = INT_MAX, int maxRange= INT_MIN)
 }
 
 // kth- smallest element //
-//.
-//.
-//.
-//.
-//.
+class Solution
+{
+    public:
+    int kthSmallest(TreeNOde *root, int k)
+    {
+        int ans;
+        inOrder(root, k, ans);
+
+        return ans;
+    }
+    void inOrder(TreeNode *root, int &k, int &ans)
+    {
+        if(root==NULL) return; 
+        
+        inOrder(root->left, k, ans);
+
+        k--;
+        if(k==0)
+        {
+            ans = root->val;
+        }
+        inOrder(root->right, k, ans);
+    }
+};
+// input
+// 3,1,4,null,2
+//1
 
 // ********* Largest BST in a binary tree ******* //
 //************************************************//
