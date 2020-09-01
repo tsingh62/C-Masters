@@ -9,9 +9,9 @@ using namespace std;
 void maxSlidingWindow(int arr[], int n, int k)
 {
 	deque<int> q;
-
+	// we need to do the task for the 1st k element
 	for(int i=0; i<k; i++)
-	{
+	{   // if value at the back is smaller than my value or not
 		while(!q.empty() && arr[q.back()]<= arr[i])
 		{	
 			q.pop_back();
@@ -22,6 +22,9 @@ void maxSlidingWindow(int arr[], int n, int k)
 		// or work has to be done
 		q.push_back(i);
 	}
+	// Once the max k sized for the 1stelement has been done
+    // we need to do work for the next k sized elements
+	
 	// max value at the front of the deck
 	for(int i=k; i<n; i++)
 	{
@@ -30,12 +33,16 @@ void maxSlidingWindow(int arr[], int n, int k)
 		{
 			q.pop_front();
 		}
+		// when you insert the values you need to check for the 
+        // same conditions
 		while(!q.empty() && arr[q.back()]<=arr[i])
 		{
 			q.pop_back();
 		} 
 		q.push_back(i);
 	}
+	// printing out the value for the ;ast index case 
+	// once the code is complete
 	cout << arr[q.front()] << endl;
 }
 
