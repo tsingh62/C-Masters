@@ -1,201 +1,162 @@
 
+
+// #include<iostream>
+// //#include<vector>
+// //#include<bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+// 	/* lines are just to take input and write
+// 	output */
+// 	#ifndef ONLINE_JUDGE
+// 		freopen("input.txt", "r", stdin);
+// 		freopen("output.txt", "w", stdout);
+// 	#endif
+
+// 	int x;
+// 	cin >> x;
+// 	cout << x;
+// }
+
 #include<iostream>
 #include<vector>
-using namespace std;
+using namespace std; 
 
+// default value of struct is public unlike 
+// class in c++
 
-class TreeNode
-{
-    public:
-    int val;
-    TreeNode *left;
-    TreeNode *right;
+// left binary tree
+struct minheap {
+	vector<int> v;
 
-    TreeNode(int data)
-    {
-        this->val = data;
-        this->left = NULL;
-        this->right = NULL;
-    }
+	minheap(vector<int> a) {
+		v = a;
+		// for(auto x : v) 
+		// {
+		// 	cout << x << " ";
+		// }
+	}
+
+	void heapify(int idx) {
+		int left = 2 * idx + 1, right = 2 * idx + 2;
+		int min_idx = idx;
+		// if left value is smaller than cur value
+		// then make left as min
+		if (left < v.size() && v[left] < v[min_idx]) {
+			min_idx = left;
+		}
+		// if right is smaller than left and idx
+		// combined then make right as smallest
+		if (right < v.size() && v[right] < v[min_idx]) {
+			min_idx = right;
+		}
+
+		if (min_idx != idx) {
+			// min_idx contains either left or right
+			swap(v[idx], v[min_idx]);
+			heapify(min_idx);
+			return;
+		}
+
+		return;
+	}
+	void build_heap() {
+		//	int last_parent = ((v.size()-1)-1)/2;
+					       //last node
+		// or can be written as
+		int last_par = (v.size() - 2) / 2;
+		// call heapify for all non-leaf nodes
+		for (int i = last_par; i >= 0; i--) {
+			heapify(i);
+		}
+	}
+	// return topmost element of heap
+	int top() {
+		return v[0];
+	}
+	// clear
+	void clear() {
+		v.clear();
+	}
+	bool empty() {
+		return v.empty();
+	}
+	// remove the smallest value of the heap
+	void pop() {
+		swap(v[0], v.back()); 	//last of v 
+		v.pop_back();// last one is removed
+		heapify(0);
+	}
+	// insert the the value into the heap
+	// at the last node
+	void push(int val) {
+		// made a new node and pushed it
+		v.push_back(val);
+		int idx = v.size() - 1; // last idx
+		int par = (idx - 1) / 2;
+
+		while (idx > 0 && v[par] > v[idx]) {
+			swap(v[idx], v[par]);
+			idx = par; // make the idx the parent
+			par = (idx - 1) / 2;
+		}
+		return;
+	}
 };
 
-TreeNode *buildTree(TreeNode *root)
-{
-    int data;
-    cin >> data;
+// O(n+n+n*logn)
+// O(nlogn)
+void heap_sort(vector<int> &a) {
+	// copy O(n)
+	minheap H(a);
+			// taking a min heap and 		
+	// (n)		// build it
+	H.build_heap();
 
-    if(data == -1)
-    {
-        return NULL;
-    }
-    if(root == NULL)
-    {
-         root = new TreeNode(data);
-    }
-
-    root->left = buildTree(root->left);
-    root->right = buildTree(root->right);
-
-    return root;
-}
-
-TreeNode *buildBST(TreeNode *root, int data)
-{
-    if(root == NULL)
-    {
-        root = new TreeNode(data);
-        return root;
-    }
-    if(data > root->val)
-    {
-        root->right = buildBST(root->right,data);
-    }
-    else
-    {
-        root->left = buildBST(root->left,data);
-    }
-    return root;
-}
-TreeNode *insert(TreeNode *root)
-{
-    int data;
-    cin >> data;
-
-    if(data==-1)
-    {
-        return NULL;
-    }
-    if(root==NULL)
-    {
-        root = new TreeNode(data);
-    }
-
-    while(data!=-1)
-    {
-        root = buildBST(root, data);
-        cin >> data;
-    }
-    return root;
-}
-
-void inOrder(TreeNode *root)
-{
-    if(root==NULL)
-    {
-        return;
-    }
-
-    inOrder(root->left);
-    cout << root->val << " ";
-    inOrder(root->right);
-}
-
-void preOrder(TreeNode *root)
-{
-    if(root == NULL)
-    {
-        return;
-    }
-
-    cout << root->val << " ";
-    preOrder(root->left);
-    preOrder(root->right);
-}
-
-bool serachInBST(TreeNode *root, int key)
-{
-    if(root == NULL)
-    {
-        return false;
-    }
-    if(root->val == key)
-    {
-        return true;
-    }
-
-    if(key < root->val)
-    {
-        return  serachInBST(root->left, key);
-    
-    }
-    else
-    {
-        return serachInBST(root->right, key);
-    }
-    
-}
-bool isBST(TreeNode *root, int minRange=INT_MIN, int maxRange = INT_MAX)
-{
-    if(root == NULL)
-    {
-        return true;
-    }
-    bool leftBST = isBST(root->left, minRange, root->val);
-    bool rightBST = isBST(root->right, root->val, maxRange);
-    if(leftBST && rightBST && root->val > minRange && root->val < maxRange)
-    {
-        return true;
-    }
-    return false;
-}
- // K - smallest element in a tree
- // we need to sort it  by using inorder
- // traversal
-class Solution
-{
-    public:
-    int kthSmallest(TreeNOde *root, int k)
-    {
-        int ans;
-        inOrder(root, k, ans);
-
-        return ans;
-    }
-    void inOrder(TreeNode *root, int &k, int &ans)
-    {
-        if(root==NULL) return; 
-        
-        inOrder(root->left, k, ans);
-
-        k--;
-        if(k==0)
-        {
-            ans = root->val;
-        }
-        inOrder(root->right, k, ans);
-    }
-};
-// input
-// 3,1,4,null,2
-//1
-int main()
-{
-    TreeNode *root = NULL;
-    root = insert(root);
-    
-    inOrder(root);
-    cout << endl;
-
-    preOrder(root);
-    cout << endl;
-
-    if(serachInBST(root,13))
-	{
-		cout << "Key found" << endl;
+	for (int i = 0; i < a.size(); i++) {
+		// O(1)
+		a[i] = H.top();
+		// O(logn)
+		// O(log(a.size()-i))
+		H.pop();
 	}
-	else
-	{
-		cout << " Key not found" << endl;
+}
+
+int main() {
+
+// lines are just to take input and write output
+// #ifndef ONLINE_JUDGE
+// 	freopen("input.txt", "r", stdin);
+// 	freopen("output.txt", "w", stdout);
+// #endif
+
+	int n;
+	cin >> n;
+	//  vector<int> a;
+	//  a.resize(n);
+	//  // or
+	vector<int> a(n);
+	for (int i = 0; i < n; i++) {
+		cin >> a[i];
 	}
-	
+
+	 heap_sort(a);
+
+	for (auto x : a) cout << x << " ";
+
+	minheap H(a);
+	H.build_heap();
 	cout << endl;
+	cout << H.top() << '\n';
 
-    return 0;  
+	H.pop();
+	
+	cout << H.top() << '\n';
 
+	H.push(0);
+
+	cout << H.top() << '\n';
 }
 
-// 8 5 13 -1 -1 -1 10 4 -1 -1 7 -1 -1
-
-// BST
-//  8 4 2 1 -1 -1 3 -1 -1 6 5 -1 -1 7 -1 -1 9 7 -1 -1 10 -1 -1
-//  8 5 7 6 3 12 10 14 -1
+//g++ sample.cpp -std=c++11

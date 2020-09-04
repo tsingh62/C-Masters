@@ -41,6 +41,15 @@ int reduceToOneMemo(int n, int dp[])
 	minValue +=1;
 
 	dp[n]=minValue;
+
+	// print dp array at each moment of 
+    // the function call as how is it getiing filled
+    for(int i=1; i<=10; i++)
+    {
+        cout << dp[i] << "\t";
+    }
+    cout << endl << "**********************" << endl;
+
 	return minValue;
 
 }
@@ -88,9 +97,12 @@ int reduceToOnePureDp(int n)
 int main()
 {
 	int n=10;
-//	cout << reduceToOneMemo(n) << endl;
+	cout << reduceToOneMemo(n) << endl;
 
 	int dp[n+1];
+	// because  n is 10 - so we when we create n+1 (11)
+    // that means we can easily fit an array of 
+    // size 10 
 	memset(dp, -1, sizeof(dp));
 	cout << reduceToOneMemo(n,dp) << endl;
 

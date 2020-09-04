@@ -1,6 +1,7 @@
 
 
 #include<iostream>
+#include<vector>
 using namespace std;
 
 class solution
@@ -11,8 +12,10 @@ class solution
 	{
 		// just like end+1
 		// we use the same logic for n+1
-		// -1 spwcifies that the values have
-		// not been filled
+		// -1 specifies that the values have
+		// not been filled and we fill it with -1
+		// this is how you initialize single 
+		// dimension array
 		vector <int> dp(n+1, -1);
 		return helper(n, dp);
 	}
@@ -21,6 +24,7 @@ class solution
 	{
 		if(n==0)
 		{
+			dp[n]=0;
 			return 0;
 		}
 		if(dp[n]!=-1)
@@ -41,15 +45,49 @@ class solution
 		return minValue;
 	}
 };
+// Pure Dp
+// in pure dp we go from bottom to up
+class Solution1
+{
+	public:
+	int numSqrs(int n)
+	{
+		vector <int> dp(n+1,-1);
+		
+		// base case
+		dp[0] = 0;
 
+		for(int problem=1; problem <= n; problem++)
+		{
+			int minValue = INT_MAX;
+
+			for(int i=1; i*i<=problem; i++)
+			{
+				int minPerfectSqSubProblem = dp[problem-i*i];
+				minValue = min(minValue, minPerfectSqSubProblem+1);
+			}
+			dp[problem] = minValue;
+		}
+		return dp[n];
+	}	
+};
 
 int main()
 {
 	int n = 12;
-	int dp[n+1];
-	memset(dp, -1, sizeof(dp));
+	// we dont need to do this 
+	// when defining the vector dp
+	// we have already put dp(n+1)
+	// and initialized the dp to -1
+	// |
+	// V
+	// int dp[n+1];  // this is for array
+	// memset(dp, -1, sizeof(dp));
 	solution S;
-	S.numSquares(n);
-	cout << n << endl;
+	cout << S.numSquares(n) << endl;
+
+	// pure dp
+	Solution1 s1;
+	cout << s1.numSqrs(n) << endl;
 	return 0;
 }
