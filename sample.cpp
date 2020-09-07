@@ -1,162 +1,118 @@
-
-
-// #include<iostream>
-// //#include<vector>
-// //#include<bits/stdc++.h>
-// using namespace std;
-
-// int main()
-// {
-// 	/* lines are just to take input and write
-// 	output */
-// 	#ifndef ONLINE_JUDGE
-// 		freopen("input.txt", "r", stdin);
-// 		freopen("output.txt", "w", stdout);
-// 	#endif
-
-// 	int x;
-// 	cin >> x;
-// 	cout << x;
-// }
-
 #include<iostream>
-#include<vector>
-using namespace std; 
+#include<string>
+using namespace std;
 
-// default value of struct is public unlike 
-// class in c++
+// assuming that key is a string and 
+// value is random
+template <typename T>
+struct node
+{
+    // has a key and a value
+    // ke = string | value = random
+    string key;
+    T value;
 
-// left binary tree
-struct minheap {
-	vector<int> v;
+    //                     bucket   0   1   2  3
+    // node will contain a pointer  []- []-[]-[]
+    // pointing to the next pointer     |
+    //                                  []
 
-	minheap(vector<int> a) {
-		v = a;
-		// for(auto x : v) 
-		// {
-		// 	cout << x << " ";
-		// }
-	}
+    node<T> *nxt;
 
-	void heapify(int idx) {
-		int left = 2 * idx + 1, right = 2 * idx + 2;
-		int min_idx = idx;
-		// if left value is smaller than cur value
-		// then make left as min
-		if (left < v.size() && v[left] < v[min_idx]) {
-			min_idx = left;
-		}
-		// if right is smaller than left and idx
-		// combined then make right as smallest
-		if (right < v.size() && v[right] < v[min_idx]) {
-			min_idx = right;
-		}
-
-		if (min_idx != idx) {
-			// min_idx contains either left or right
-			swap(v[idx], v[min_idx]);
-			heapify(min_idx);
-			return;
-		}
-
-		return;
-	}
-	void build_heap() {
-		//	int last_parent = ((v.size()-1)-1)/2;
-					       //last node
-		// or can be written as
-		int last_par = (v.size() - 2) / 2;
-		// call heapify for all non-leaf nodes
-		for (int i = last_par; i >= 0; i--) {
-			heapify(i);
-		}
-	}
-	// return topmost element of heap
-	int top() {
-		return v[0];
-	}
-	// clear
-	void clear() {
-		v.clear();
-	}
-	bool empty() {
-		return v.empty();
-	}
-	// remove the smallest value of the heap
-	void pop() {
-		swap(v[0], v.back()); 	//last of v 
-		v.pop_back();// last one is removed
-		heapify(0);
-	}
-	// insert the the value into the heap
-	// at the last node
-	void push(int val) {
-		// made a new node and pushed it
-		v.push_back(val);
-		int idx = v.size() - 1; // last idx
-		int par = (idx - 1) / 2;
-
-		while (idx > 0 && v[par] > v[idx]) {
-			swap(v[idx], v[par]);
-			idx = par; // make the idx the parent
-			par = (idx - 1) / 2;
-		}
-		return;
-	}
+    // constructor
+    node(string _key, T _value)
+    {
+        key = _key;
+        value = _key;
+        nxt = NULL;
+    }
 };
 
-// O(n+n+n*logn)
-// O(nlogn)
-void heap_sort(vector<int> &a) {
-	// copy O(n)
-	minheap H(a);
-			// taking a min heap and 		
-	// (n)		// build it
-	H.build_heap();
+template <typename T>
+struct hash_table // this struct contain 2d array
+{   
+    int maxSize; // no of rows in bucket
+    int curSize; // no of (key, value) pair inserted
+    
+    node<T> **bucket; // 2 d pointer
 
-	for (int i = 0; i < a.size(); i++) {
-		// O(1)
-		a[i] = H.top();
-		// O(logn)
-		// O(log(a.size()-i))
-		H.pop();
+    hash_table(int _maxSize)
+    {
+        maxSize = _maxSize;
+        curSize = 0;
+        bucket = new node<T> *[maxSize];
+
+        for(int i=0; i<maxSize; i++)
+        {
+       // bucket[i] is the head of the linked list
+       // starting at 0 /i   
+            bucket[i] = NULL;
+        }
+    }
+    int hash_func(string key)
+        {
+            int hash =0;
+            int p = 1;
+            
+
+            for(int i=0; i< key.size(); i++)
+            {
+                hash += key[i] + p;
+                hash %= maxSize;
+                
+                p+=31;
+                p %= maxSize;
+            }
+            return hash;
+        }
+
+        void insert(string key, T value)
+        {
+            int index = hash_func(key);
+
+            node <T> *n = new node<T> (key, value);
+            n->next = bucket[index];
+            bucket[index] = n;
+
+            curSize++;
+            return;
+        }
+
+        // pointer to a value
+        T *search(string key)
+        {
+            int index = hash_func(key);
+
+            node <T> *temp = bucket[index];
+            while(temp != NULL)
+            {
+                if(temp->key == key)
+                {
+                    return &(temp->value);
+                }
+                temp = temp->next;
+            }
+            return NULL:
+        }
+};
+int main()
+{
+    hash_table<int> H(7);
+//	cout << H.hashFunc("BB") << '\n';
+
+    H.insert("aA",10);
+	H.insert("BB", 20);
+	if(H.serach("aA")!=NULL)
+	{
+		cout << H.serach("aA") << '\n'; 
 	}
-}
-
-int main() {
-
-// lines are just to take input and write output
-// #ifndef ONLINE_JUDGE
-// 	freopen("input.txt", "r", stdin);
-// 	freopen("output.txt", "w", stdout);
-// #endif
-
-	int n;
-	cin >> n;
-	//  vector<int> a;
-	//  a.resize(n);
-	//  // or
-	vector<int> a(n);
-	for (int i = 0; i < n; i++) {
-		cin >> a[i];
+	if(H.serach("AAA")!=NULL)
+	{
+		cout << H.serach("AAA") << '\n'; 
 	}
-
-	 heap_sort(a);
-
-	for (auto x : a) cout << x << " ";
-
-	minheap H(a);
-	H.build_heap();
-	cout << endl;
-	cout << H.top() << '\n';
-
-	H.pop();
-	
-	cout << H.top() << '\n';
-
-	H.push(0);
-
-	cout << H.top() << '\n';
+	else
+	{
+		cout << "Not found" << endl;
+	}
+    return 0;
 }
-
-//g++ sample.cpp -std=c++11

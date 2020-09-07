@@ -27,24 +27,31 @@ using namespace std;
 // class in c++
 
 // left binary tree
-struct minheap {
+struct minheap 
+{
 	vector<int> v;
 
-	minheap(vector<int> a) {
+	minheap(vector<int> a) 
+	{
+		// passing the value of a to v
 		v = a;
+		// print to check
 		// for(auto x : v) 
 		// {
 		// 	cout << x << " ";
 		// }
 	}
 
-	void heapify(int idx) {
+	void heapify(int idx) 
+	// call for the inde to heapify the whole structure
+	{
 		int left = 2 * idx + 1, right = 2 * idx + 2;
 		int min_idx = idx;
 		// if left value is smaller than cur value
 		// then make left as min
-		if (left < v.size() && v[left] < v[min_idx]) {
-			min_idx = left;
+		if (left < v.size() && v[left] < v[min_idx]) 
+		{ // or left <=v.size()-1
+			min_idx = left; // assuming current idx is the minimum
 		}
 		// if right is smaller than left and idx
 		// combined then make right as smallest
@@ -66,12 +73,15 @@ struct minheap {
 					       //last node
 		// or can be written as
 		int last_par = (v.size() - 2) / 2;
+		// v.size()-1 is the last node - so the parent of last node
+        // will be (lastnode-1)/2
+
 		// call heapify for all non-leaf nodes
 		for (int i = last_par; i >= 0; i--) {
 			heapify(i);
 		}
 	}
-	// return topmost element of heap
+	// return topmost element of heap - as this is the min-heap
 	int top() {
 		return v[0];
 	}
@@ -83,9 +93,13 @@ struct minheap {
 		return v.empty();
 	}
 	// remove the smallest value of the heap
-	void pop() {
-		swap(v[0], v.back()); 	//last of v 
+	void pop() 
+	{
+		// will remove the minimum node
+        // for min heap it will be the top node 
+		swap(v[0], v.back()); 	//last of v - // v.back - last element 
 		v.pop_back();// last one is removed
+		// after swapping pops the last element
 		heapify(0);
 	}
 	// insert the the value into the heap
@@ -137,6 +151,8 @@ int main() {
 	//  a.resize(n);
 	//  // or
 	vector<int> a(n);
+	 // we resize as initially the vector was empty 
+    // so we define the size with n by resizing it
 	for (int i = 0; i < n; i++) {
 		cin >> a[i];
 	}

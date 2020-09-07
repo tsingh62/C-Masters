@@ -8,8 +8,14 @@ using namespace std;
 template<typename T>
 struct node
 {
+	// has a key and a value
+    // ke = string | value = random
 	string key; 
 	T value;
+	 //                     bucket   0   1   2  3
+    // node will contain a pointer  []- []-[]-[]
+    // pointing to the next pointer     |
+    //        
 	node<T> *next;
 
 	// constructor
@@ -23,12 +29,12 @@ struct node
 };
 
 template<typename T>
-struct hashTable
+struct hashTable // this struct contain 2d array
 {
 	// number of rows in bucket
-	int maxSize;
+	int maxSize; // no of rows in bucket
 	// total no of (key,value) pair inserted
-	int curSize;
+	int curSize; // no of (key, value) pair inserted
 
 	node<T> **bucket; // double pointer - 2d?
 
@@ -40,6 +46,9 @@ struct hashTable
 					// new node - pointer of maxSize
 		// bucket [i] is a head of a linked list 
 		// starung ar i
+
+		// bucket[i] is the head of the linked list
+       // starting at 0 /i  
 		for(int i=0; i<maxSize; i++) bucket[i] = NULL;
 	}
 	int hashFunc(string key)
