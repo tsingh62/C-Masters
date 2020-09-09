@@ -5,6 +5,26 @@
 #include<list>
 
 using namespace std;
+// using hash-map
+// weighted graph
+
+/*(A)----20----(B)
+    |\          |
+    |  \        | 
+    10    50     30
+    |        \   |
+    |         \  |
+  (C)-----40----(D)
+
+  A -> (B,20) (D,50) (C,10)
+       --------------------
+  A              |
+  |              V
+  String      List<pair> <String, int>>
+  ------        --------------------
+  Key               Value
+
+*/ 
 
 
 class Graph

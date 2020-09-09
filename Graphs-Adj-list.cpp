@@ -10,6 +10,8 @@ class Graph
 	int v;
 
 	// Array of lists
+	// l is a pointer to an array - in
+    // which each element of the array is a list
 	list<int> *l; // keeping l as a pointer to 
 					// array of list
 					// initialized during run time
@@ -42,7 +44,7 @@ class Graph
 
 int main()
 {
-	Graph g(4);
+	Graph g(4); // 4 defines the no of edges
 	g.addEdge(0,1);
 	g.addEdge(0,2);
 	g.addEdge(2,3);

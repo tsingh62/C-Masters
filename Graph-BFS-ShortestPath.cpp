@@ -6,11 +6,14 @@ using namespace std;
 
 // t = int 
 // map<int, <int>>
-template <typename T>
+template <typename T>// map <int, list<int>>
+// key  and value 
+// since this is not a weighted graph
+
 class Graph
 {
 
-		// node example 2 is the ket and 
+		// node example 2 is the key and 
 		// the neighbours are the value
 		// 2 -> 1,3
 			// list stores the values

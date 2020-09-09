@@ -7,7 +7,10 @@ using namespace std;
 
 // t = int 
 // map<int, <int>>
-template <typename T>
+template <typename T> // map <int, list<int>>
+// key  and value 
+// since this is not a weighted graph
+
 class Graph
 {
 
@@ -17,6 +20,10 @@ class Graph
 			// list stores the values
 
 	map<T, list<T>> l;
+	  // key - value
+      // key - node visited | value - connected nodes to the node visited
+	  // 1 - (2,3,0) example
+	  		//	put the values in a list
 
 	public:
 	void addEdge(int x, int y)
@@ -38,7 +45,8 @@ class Graph
 			T node = q.front();
 			q.pop();
 			cout << node << " ";
-			for(int nbr : l[node])
+			
+			for(int nbr : l[node]) // gives the values of that node
 			{
 				if(!visited[nbr])
 				{
