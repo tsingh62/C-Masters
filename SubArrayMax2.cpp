@@ -8,7 +8,7 @@ using namespace std;
 // for reference
 int main()
 {
-    int arr[]={1,2,-4,5,7};
+    int arr[]={1,2,4,5,7};
     int n=5;
     int maxsum=0;
    

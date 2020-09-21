@@ -68,6 +68,7 @@ void mergeSort(int arr[], int start, int end) {
 	int main()
 	{
 		int arr[]={5,3,12,8,19,16,2,4};
+		
 		int n = sizeof(arr)/sizeof(int);
 		mergeSort(arr, 0, n-1);
 

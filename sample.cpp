@@ -1,58 +1,54 @@
+// rotated array
 #include<iostream>
-#include<map>
-#include<list>
 using namespace std;
-template <typename T>
-class Graph
+
+int func(int arr[], int start, int end, int target)
 {
-	map <T, list<T>> l;
 
-	public:
+    if(start>end)
+    {
+        return -1;
+    }
 
-	void addEdge(int x, int y)
-	{
-		l[x].push_back(y);
-		l[y].push_back(x);
-	}
 
-	void dfs_helper(T src, map<T, bool> &visited)
-	{	
-		cout << src << " ";
-		visited[src]=true;
-		for(T nbr : l[src])
-		{
-			if(!visited[nbr])
-			{
-				dfs_helper(nbr, visited);
-			}
-			
-		}
+    int mid = start+(end-start)/2;
 
-	}
-	void dfs(T src)
-	{
-		map <T, bool> visited;
+    if(arr[mid]==target)
+    {
+        return mid;
+    }
 
-		for(auto p  : l)
-		{
-			T node = p.first;
-			visited[node] = false;
-		}
-		dfs_helper(src, visited);
-	}
-};
+    if(arr[mid]>=arr[start])
+    {
+        if(target>=arr[start]&& target< arr[mid])
+        {
+            return func(arr, start, mid, target);
+        }
+        else
+        {
+            return func(arr, mid+1, end,target);
+        }
+        
+    }
+    else
+    {
+        if(target> arr[mid] && target <=arr[end])
+        {
+            return func(arr, mid+1, end, target);
+        }
+        else
+        {
+            return func(arr, start, mid, target);
+        }
+        
+    }
+    
+}
 int main()
 {
-	Graph <int> g;
-	g.addEdge(0,1);
-	g.addEdge(1,2);
-	g.addEdge(2,3);
-	g.addEdge(3,4);
-	g.addEdge(4,5);
-	g.addEdge(3,0);
-
-	g.dfs(0);
-
-
-	return 0;
+    int arr[]={4,5,6,7,01,2,3};
+    int n = sizeof(arr)/sizeof(int);
+    int target = 0;
+    cout << func(arr, 0, n-1, target) << endl;
+    return 0;
 }

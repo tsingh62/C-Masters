@@ -4,6 +4,13 @@ using namespace std;
 
 int serachRotated(int arr[], int start, int end, int target)
 {
+	// Base case
+	if(start>end)
+    {
+        return -1;
+    }
+
+	// Rec
 	int mid = start+(end-start)/2;
 	if(arr[mid]==target)
 	{

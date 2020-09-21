@@ -21,18 +21,19 @@ int main()
             // printing the pair values
             for(int k=i; k<=j; k++)
             {
-               
+               cout << arr[k] << " ";
                 // adding the pairs
                 sum  +=arr[k];
             // cout << arr[k] << " ";
             }
+
           //  cout << "Sum is " << sum << endl;
              if(sum>maxsum)
                 {
                     maxsum=sum;
                 }
        // cout << "Max sum is " << maxsum << endl;
-       // cout << endl;
+       cout << endl;
         }
         
     }
