@@ -1,54 +1,47 @@
-// rotated array
 #include<iostream>
+#include<list>
 using namespace std;
 
-int func(int arr[], int start, int end, int target)
+// linked list has data and address of next node 
+// value can be deleted , ddded at front end and back
+
+// doubly linked list has to links
+// one to the next node and one to the next 
+
+/* class listNode
 {
+    int data;
+    listNode *nodeNext;
+    listNode *nodeprev;
+} 
+*/
 
-    if(start>end)
-    {
-        return -1;
-    }
-
-
-    int mid = start+(end-start)/2;
-
-    if(arr[mid]==target)
-    {
-        return mid;
-    }
-
-    if(arr[mid]>=arr[start])
-    {
-        if(target>=arr[start]&& target< arr[mid])
-        {
-            return func(arr, start, mid, target);
-        }
-        else
-        {
-            return func(arr, mid+1, end,target);
-        }
-        
-    }
-    else
-    {
-        if(target> arr[mid] && target <=arr[end])
-        {
-            return func(arr, mid+1, end, target);
-        }
-        else
-        {
-            return func(arr, start, mid, target);
-        }
-        
-    }
-    
-}
 int main()
 {
-    int arr[]={4,5,6,7,01,2,3};
-    int n = sizeof(arr)/sizeof(int);
-    int target = 0;
-    cout << func(arr, 0, n-1, target) << endl;
+    list <int> l;
+
+    l.push_back(3);
+    l.push_front(89);
+
+    l.push_back(10);
+    l.push_back(11);
+    l.push_back(20);
+
+    for(int val : l)
+    {
+        cout << val << " -> ";
+    }
+    cout << endl;
+    l.pop_back();
+    l.pop_front();
+
+    l.sort();
+
+    for(int val : l)
+    {
+        cout << val << " -> ";
+    }
+
+    cout << endl;
     return 0;
 }

@@ -1,6 +1,21 @@
 
 //g++ sample.cpp -std=c++11
 
+// linked list has data and address of next node 
+// value can be deleted , ddded at front end and back
+
+// doubly linked list has to links
+// one to the next node and one to the next 
+
+/* class listNode
+{
+    int data;
+    listNode *nodeNext;
+    listNode *nodeprev;
+} 
+youtube video : 
+https://www.youtube.com/watch?v=VOQNf1VxU3Q&ab_channel=mycodeschool
+*/
 
 // include list as a header
 #include<iostream>
