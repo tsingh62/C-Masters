@@ -10,7 +10,7 @@ void transfer(stack <int> &s1, stack<int> &s2, int n)
     {
             s2.push(s1.top());
             s1.pop();
-    }
+    } 
 }
 
 void revStack(stack <int> &s1)
@@ -31,7 +31,7 @@ void revStack(stack <int> &s1)
         // insert the element x in s1
         s1.push(x);
 
-        // transfer n-i-1 elements from s1 to s2
+        // transfer n-i-1 elements from s2 to s1
         transfer(s2,s1,n-i-1);
     }
 

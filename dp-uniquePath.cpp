@@ -35,8 +35,8 @@ class solution
 
 int main()
 {
-	int m=4;
-	int n=4;
+	int m=2;
+	int n=2;
 	solution s;
 	s.uniquePath(m,n);
 	cout << s.uniquePath(m,n) << endl;

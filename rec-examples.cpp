@@ -42,9 +42,8 @@ int power(int n, int p){
 //     // while we are are moving down to the - call stack
 
 // }
-int linearSearch(int arr[],int si, int m, int key)
+int linearSearch(int arr[], int si, int m, int key)
 {   
-   
     // Base case
     if(si == m)
     {
@@ -56,76 +55,16 @@ int linearSearch(int arr[],int si, int m, int key)
     }
     else
     {
-        int idx = linearSearch(arr,si+1, m, key);
+        int idx = linearSearch(arr, si+1, m, key);
         return idx;
     }
     
 }
-int sumTilln(int n)
-{
-    // base case
-    if(n==0 || n==1)
-    {
-        return n;
-    }
-
-    return n + sumTilln(n-1);
-}
-
-void incDec(int n)
-{
-    if(n==0)
-    {
-        return;
-    }
-    cout<< n << " ";
-    incDec(n-1);
-    cout << n << " ";
-}
-int power2(int n, int p)
-{
-    // base case
-    if(p==0)
-    {
-        return 1;
-    }
-    int subProblem = power2(n,p/2);
-    if(p&1)
-    {
-        int ans = subProblem * subProblem * n;
-        return ans;
-    }
-    else
-    {
-        int ans = subProblem * subProblem;
-        return ans;
-    }
-
-}
-void incDecOddEven(int n)
-{
-    //base case
-    if(n==0)
-    {
-        return;
-    }
-    if(n&1)
-    {
-        cout << n << " ";
-    }
-    incDecOddEven(n-1);
-    if(n%2==0)
-    {
-        cout << n << " ";
-    }
-}
 int main() {
     int n = 5;
     printInc(n);
-     //****//
     cout << endl;
     printDec(n);
-     //****//
     cout << endl;
     //****//
     cout << power(2,8) << endl;
@@ -134,17 +73,7 @@ int main() {
     int m = 7;
     int key = 1;
     int si=0;
-    cout << linearSearch(arr, si,m, key) << endl;
+    cout << linearSearch(arr,si, m, key) << endl;
     //****//
-    int p = 5;
-    cout << sumTilln(p) << endl; 
-     //****//
-    incDec(n);
-    cout << endl;
-    //****//
-    cout << power2(2,8) << endl;
-     //****//
-    incDecOddEven(n);
-    cout << endl;
     return 0;
 }
