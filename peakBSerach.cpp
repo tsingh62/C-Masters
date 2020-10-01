@@ -30,7 +30,8 @@ using namespace std;
 
 int main()
 {
-    int arr[]={1,2,1,3,7,6,4};
+    int arr[]={1,2,9,3,7,6,4};
+    // int arr[]={1,2,1,6,4,8};
     int n=sizeof(arr)/sizeof(int);
     int start = 1;
     int end = n-1;
