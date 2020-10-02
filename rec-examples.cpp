@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+#include<sstream>
 
 void printInc(int n) {
     if(n==0) {
@@ -332,6 +333,175 @@ string addStar(string str)
         return ch + recresult;
     }   
 }
+string duplicate(string str)
+{
+    if(str.length()==0)
+    {
+        return str;
+    }
+    char ch = str[0];
+    string subproblem = str.substr(1);
+    string rec = duplicate(subproblem);
+    
+    if(ch == rec[0])
+    {
+        return rec;
+    }
+    else
+    {
+        return ch+rec;
+    } 
+    
+}
+string moveToEnd(string str )
+{
+    if(str.length()==0)
+    {
+        return str;
+    }
+    char ch = str[0];
+    string subproblem = str.substr(1);
+    string rec = moveToEnd(subproblem);
+
+    char x = 'x';
+    if(ch==x)
+    {
+        return rec+ch;
+    }
+    else
+    {
+        return ch+rec;
+    }
+    
+}
+// print all subsequence
+// abc 
+//{'a','b','c'} - power set // all subsets
+void subSeq(string str, string ans)
+{
+    // need an empty string with the help of which
+// i would print all the possible sub-sequences
+// string ans - should always start from an empty string
+// in int main its taken as an empty string
+    if(str.length()==0)
+    {
+        // as ans has an empty string
+        cout << ans << endl;
+        return;
+    }
+    char ch = str[0];
+    string subproblem = str.substr(1);
+    subSeq(subproblem, ans);
+    subSeq(subproblem, ans+ch);
+    // do this things twice 
+    // once for adding the char a = str[0]
+    // and once for not adding the char a = str[0]; 
+}
+void printPermutations(string str, string ans)
+{
+    if(str.length()==0)
+    {
+        cout << ans << endl;
+        return;
+    }
+   for(int i=0; i<str.length();i++)
+   {
+       char ch = str[i];  
+
+       string subproblem = str.substr(0,i)+str.substr(i+1);
+
+       printPermutations(subproblem, ans + ch);
+   }
+
+}
+string code[]={" ",".","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+void printKeypad(string str, string ans)
+{
+    if(str.length() == 0)
+    {
+        cout << ans << endl;
+        return;
+    }
+    
+    char ch = str[0];
+    string subproblem = str.substr(1);
+
+    int idx = ch - '0';
+    // convert charater to integer
+
+    string key = code[idx]; // "ghi"
+
+    for(int i=0; i<key.length(); i++)
+    {
+        printKeypad(subproblem, ans + key[i]);
+    }
+}
+// print all possible paths
+void printBoardPath(int start, int end, string ans)
+{
+
+    if(start > end)
+    {
+        return; 
+    }
+    if(start == end)
+    {
+        cout << ans << endl;
+        return;
+    }
+   
+
+    for(int jump=1; jump<=6; jump++)
+    {
+        string jmp = to_string(jump);
+        // converting interger to string
+        printBoardPath(start+jump, end, ans+jmp);
+    }
+}
+void printMazePath(int sr, int sc, int er, int ec, string ans)
+{
+    if(sr == er && sc == ec)
+    {
+        cout << ans << endl;
+        return;
+    }
+    if(sr > er || sc > ec)
+    {
+        return;
+    }
+    string sr1 = to_string(sr);
+    string sc1 = to_string(sc);
+    string er1 = to_string(er);
+    string ec1 = to_string(ec);
+    printMazePath(sr, sc+1, er, ec, ans+(sr1));
+    printMazePath(sr+1, sc, er, ec, ans+(sc1));
+    
+}
+int reduceToOne(int n)
+{
+    if(n == 1)
+    {
+        return 0;
+    }
+    int count1=INT_MAX,count2=INT_MAX,count3=INT_MAX;
+
+    if(n%2==0)
+    {
+        count2 = reduceToOne(n/2);
+    }
+    if(n%3==0)
+    {
+        count3 = reduceToOne(n/3);
+    }
+    
+    count1 = reduceToOne(n-1);  
+
+    
+    int minOperation = min(count1, min(count2, count3));
+    return minOperation+1;
+}
+// coding blocks recursion problems
 
 int main() 
 {
@@ -400,6 +570,29 @@ int main()
     cout << countMazePath(0,0,a,b);
     cout << endl;
     // string 
-    cout << addStar("addbbcnddhhf") << endl;
+//     cout << addStar("addbbcnddhhf") << endl;
+
+//     // string duplicate
+//     cout << duplicate("adddbbbccddd")<< endl;
+
+//     // string - move to end
+//     cout << moveToEnd("xaxbxc")<< endl;
+
+//     // string subqequence
+//     subSeq("abcd", " ");
+
+//     // print permutation
+//    printPermutations("abc", " ");
+
+   //print all possible cominations of a keypad
+  
+    printKeypad("423", " ");
+    
+
+    printBoardPath(0,10, " "); 
+
+    printMazePath(0,0,2,2," ");
+
+    cout << reduceToOne(10) << endl;
     return 0;
 }
