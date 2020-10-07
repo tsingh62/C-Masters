@@ -353,6 +353,19 @@ string duplicate(string str)
     } 
     
 }
+string rev(string str)
+{
+    if(str.length()==0)
+    {
+        return str;
+    }
+    char ch = str[0];
+    string subproblem = str.substr(1);
+    string rec = rev(subproblem);
+
+    return rec + ch;
+    
+}
 string moveToEnd(string str )
 {
     if(str.length()==0)
@@ -501,7 +514,97 @@ int reduceToOne(int n)
     int minOperation = min(count1, min(count2, count3));
     return minOperation+1;
 }
-// coding blocks recursion problems
+// *** coding blocks recursion problems *** //
+// Take as input str, a string. Write a recursive function which returns all the words possible by rearranging the characters of this string which are in dictionary order smaller than the given string. The output strings must be lexicographically sorted.
+
+// Input Format
+// Single line input containing a string
+
+// Constraints
+// Length of string <= 25
+
+// Output Format
+// Display all the words which are in dictionary order smaller than the string entered in a new line each. The output strings must be sorted.
+
+// Sample Input
+// cab
+// Sample Output
+// abc
+// acb
+// bac
+// bca
+// Explanation
+// The possible permutations of string "cab" are "abc" , "acb" ,"bac" , "bca" , "cab" and "cba" . Only four of them are lexicographically less than "cab". We print them in lexicographical order.
+
+string str;
+void permute(string inp, string out)
+{
+     if(inp.length()>25)
+    {
+        return;
+    }
+    //Base case
+    if (inp.size() == 0)
+    {
+        if (out < str)
+        {
+            cout << out << endl;
+        }
+        return;
+    }
+
+    //Recursive case
+    for (int i = 0; i < inp.size(); i++)
+    {
+        string ros = inp.substr(0, i) + inp.substr(i + 1);
+        permute(ros, out + inp[i]);
+    }
+}
+// Take as input str, a string. Write a recursive function which prints all the words possible by rearranging the characters of this string which are in dictionary order larger than the given string.
+// The output strings must be lexicographically sorted.
+
+// Input Format
+// Single line input containing a string
+
+// Constraints
+// Length of string <= 10
+
+// Output Format
+// Display all the words which are in dictionary order larger than the string entered in a new line each. The output strings must be sorted.
+
+// Sample Input
+// cab
+
+// Sample Output
+// cba
+// Explanation
+// The possible permutations of string "cab" are "abc" , "acb" ,"bac" , "bca" , "cab" and "cba" . Only one of them is lexicographically greater than "cab". We only print "cba".
+
+string str1;
+void func(string in_put, string out_put)
+{
+    if(in_put.length()>10)
+    {
+        return;
+    }
+    if(in_put.length()==0)
+    {
+        if(out_put > str1)
+        {
+            cout << out_put << endl;
+             return;
+            
+        }
+       
+    }
+    for(int i=0; i<in_put.length(); i++)
+    {
+        char ch = in_put[i];
+        string subproblem = in_put.substr(0,i)+in_put.substr(i+1);
+        func(subproblem, out_put + ch);
+    }
+
+}
 
 int main() 
 {
@@ -540,6 +643,7 @@ int main()
     // ************** //
     cout << powerBetter(2,8) << endl;
 
+
      // ************** //
     int arr[]={1,3,2,3,5,6,7,3,10};
     int n = sizeof(arr)/sizeof(int);
@@ -575,6 +679,8 @@ int main()
 //     // string duplicate
 //     cout << duplicate("adddbbbccddd")<< endl;
 
+   rev(str) << endl;
+
 //     // string - move to end
 //     cout << moveToEnd("xaxbxc")<< endl;
 
@@ -594,5 +700,18 @@ int main()
     printMazePath(0,0,2,2," ");
 
     cout << reduceToOne(10) << endl;
+
+
+//*********************** Rec - Problems ***********************// -1
+    cin >> str;
+    string temp = str;
+    sort(temp.begin(), temp.end());
+    permute(temp, "");
+//*********************** Rec - Problems ***********************// -2
+    cin >> str1;
+    string temp1 = str1;
+    sort(temp1.begin(),temp1.end());
+    func(temp1, "");
+
     return 0;
 }

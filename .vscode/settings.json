@@ -12,6 +12,7 @@
         "map": "cpp",
         "vector": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "iosfwd": "cpp"
     }
 }

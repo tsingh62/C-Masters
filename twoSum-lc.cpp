@@ -1,6 +1,6 @@
 
 // Solution link
- // https://leetcode.com/problems/two-sum/discuss/401897/c-solution-with-explaination
+// https://leetcode.com/problems/two-sum/discuss/401897/c-solution-with-explaination
 
 #include<iostream>
 #include<vector>
@@ -49,14 +49,20 @@ class Solution {
  };
  int main()
  {
-      vector <int> nums = {2,7,11,15};
+     vector <int> nums = {2,7,11,15};
      int target = 9;
      Solution s;
-    s.twoSum( copy(nums.begin(), nums.end(), ostream_iterator<int>(cout, "; ")));
-    // copy(nums.begin(), nums.end(), ostream_iterator<int>(cout, "; "));
-    cout << endl;
+     cout << s.twoSum(nums, target) << endl;
+    //  vector <int> nums = {2,7,11,15};
+    //  int target = 9;
+    //  Solution s;
+    // s.twoSum( copy(nums.begin(), nums.end(), ostream_iterator<int>(cout, "; ")));
+    // // copy(nums.begin(), nums.end(), ostream_iterator<int>(cout, "; "));
+    // cout << endl;
 
-    return EXIT_SUCCESS;
+    // return EXIT_SUCCESS;
+}
+
  }
 
  

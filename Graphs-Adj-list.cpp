@@ -42,6 +42,8 @@ class Graph
 	}
 };
 
+
+
 int main()
 {
 	Graph g(4); // 4 defines the no of edges
@@ -50,6 +52,7 @@ int main()
 	g.addEdge(2,3);
 	g.addEdge(1,2);
 	g.printAdjList();
+
 	return 0;
 }
 // g++ sample.cpp -std=c++11
