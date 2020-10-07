@@ -16,12 +16,14 @@ and then search 2 in map then the ans will
 be 0,1(index value) of the array 
 
 */
+vector<int> v;
 class Solution {
  public:
      vector<int> twoSum(vector<int>& nums, int target) 
      {
          map<int, int> m; // creating a map
-         vector<int> v; // vector to store integer
+        // vector<int> v;
+          // vector to store integer
          int n = nums.size(); 
 
          for(int i=0; i<n; i++)
@@ -51,8 +53,19 @@ class Solution {
  {
      vector <int> nums = {2,7,11,15};
      int target = 9;
-     Solution s;
-     cout << s.twoSum(nums, target) << endl;
+     Solution  s;
+    // Solution vector<int> s;
+    //  s.twoSum(nums, target);
+ 
+    vector <int> x;
+    x = s.twoSum(nums, target);
+    cout << x.front() << x.back()<< endl;
+    //  for(int i=0; i<nums.size(); i++)
+    //  {
+    //      cout << num[i] << " ";
+    //  }
+    //  cout << endl;
+
     //  vector <int> nums = {2,7,11,15};
     //  int target = 9;
     //  Solution s;
@@ -63,6 +76,6 @@ class Solution {
     // return EXIT_SUCCESS;
 }
 
- }
+
 
  
