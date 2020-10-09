@@ -234,7 +234,7 @@ long long int partition(long long int a[],long long int be,long long int end)
     swap(a[k + 1], a[pivotIndex]);
     return (k + 1);
 }
-
+// ********************** 6 ******************* //
 // function for quick sort
 void quicksort(long long int a[],long long  int be,long long  int end)
 {
@@ -246,6 +246,204 @@ void quicksort(long long int a[],long long  int be,long long  int end)
     }
 }
 
+//************************ 7 *********************//
+
+/*
+Take as input str, a string. We are concerned with all the possible subsequences of str. E.g.
+
+a. Write a recursive function which returns the count of subsequences for a given string. 
+Print the value returned.
+
+b. Write a recursive function which prints all possible subsequences for a “abcd” 
+has following subsequences “”, “d”, “c”, “cd”, “b”, “bd”, “bc”, “bcd”, “a”, “ad”, “ac”, “acd”, “ab”, “abd”, “abc”, “abcd”.
+given string (void is the return type for function).
+Note: Use cin for input for C++
+
+Input Format
+Enter a string
+
+Constraints
+None
+
+Output Format
+Print all the subsequences in a space separated manner and isplay the total no. of subsequences.
+
+Sample Input
+abcd
+Sample Output
+ d c cd b bd bc bcd a ad ac acd ab abd abc abcd 
+16
+Explanation
+Print all possible subsequences of the given string. */
+
+string str;
+int count1=0;
+
+void func(string in_put, string ans)
+{
+    if(in_put.length()==0)
+    {
+        cout << ans << endl;
+        count1++;
+        return;
+    }
+
+    char ch = in_put[0];
+    string subproblem = in_put.substr(1);
+    func(subproblem, ans);
+    func(subproblem, ans + ch);
+}
+/***************** 8 merge sort ******************/
+// function for merging two sorted arrays
+void merge(int *arr, int start, int end) {
+    int mid = (start+end)/2;
+    int i = start, j = mid+1, k = start;
+    int temp[10000];
+
+    while(i <= mid and j <= end) {
+        if(arr[i] < arr[j]) {
+            temp[k++] = arr[i++];
+        } else {
+            temp[k++] = arr[j++];
+        }
+    }
+    while(i <= mid) {
+        temp[k++] = arr[i++];
+    }
+    while(j <= end) {
+        temp[k++] = arr[j++];
+    }
+    for(int i = start; i <= end; i++) {
+        arr[i] = temp[i];
+    }
+
+}
+
+// function for merge sort 
+void mergeSort(int *arr, int start, int end) {
+
+    if(start >= end) {
+        return;
+    }
+
+    int mid = (start+end)/2;
+    mergeSort(arr, start, mid);
+    mergeSort(arr, mid+1, end);
+    merge(arr, start, end);
+}
+/********************* 9 **********************/
+/*
+We are given a hashmap which maps all the letters with number. 
+Given 1 is mapped with A, 2 is mapped with B…..26 is mapped with Z. 
+Given a number, you have to print all the possible strings.
+
+Input Format
+A single line contains a number.
+
+Constraints
+Number is less than 10^6
+
+Output Format
+Print all the possible strings in sorted order in different lines.
+
+Sample Input
+123
+Sample Output
+ABC
+AW
+LC
+Explanation
+'1' '2' '3' = ABC
+'1' '23' = AW
+'12' '3' = LC */
+
+void mappedStrings(string inp, string out)
+{
+    if (inp.size() == 0)
+    {
+        cout << out << endl;
+        return;
+    }
+    // For single digit
+    int singleDigitNumber = inp[0] - '0'; // char to integer
+    char ch = singleDigitNumber + 'A' - 1; // range from A t0 Z
+    // adding single digit no to 
+    // char range a to z correspondingly
+    // to represent 1 to A, 2 to B and so on
+    mappedStrings(inp.substr(1), out + ch);
+
+    if (inp.length() >= 2)
+    {
+        //Double digit number is possible
+        int doubleDigitNumber = (inp[0] - '0') * 10 + (inp[1] - '0');
+        if (doubleDigitNumber > 9 && doubleDigitNumber <= 26)
+        {
+            //If doubleDigitNumber is a double digit number i.e. does not have a 0 at 10s
+            //place and less than 26 (number over 26 has no letter corresponding to it)
+            ch = doubleDigitNumber + 'A' - 1;
+            mappedStrings(inp.substr(2), out + ch);
+        }
+    }
+}
+
+/**************** 10 ***************/
+/*Replace all occurrences of pi with 3.14
+
+Input Format
+Integer N, no of lines with one string per line
+
+Constraints
+0 < N < 1000
+0 <= len(str) < 1000
+
+Output Format
+Output result one per line
+
+Sample Input
+3
+xpix
+xabpixx3.15x
+xpipippixx
+Sample Output
+x3.14x
+xab3.14xx3.15x
+x3.143.14p3.14xx
+Explanation
+All occurrences of pi have been replaced with "3.14".*/
+string replacePi(string str)
+{
+    // if(str.length()==0) // thsi base case works as well
+    if(str.length()<=1)
+    {
+        return str;
+    }
+    if(str.substr(0,2) == "pi")
+    {
+        string rec = replacePi(str.substr(2));
+        return "3.14" + rec;
+    }
+    string rec = replacePi(str.substr(1));
+    return str[0] + rec;
+}
+/*************** 11 **************/
+/* Tower of hanoi*/
+void func(int n, char source, char dest)
+{
+    if(n == 0)
+    {
+        return;
+    }
+    char temp = ('A'+'B'+'C') - source - dest;
+    // move n-1 disk from soure to temp
+    func(n-1, source, temp);
+
+    // move the nth disk from source to dest
+    cout << "Moving ring " << n << " from " << source << " to " << dest << endl;
+
+    // Move n-1 disks from temp to dest
+    func(n-1, temp, dest);
+    cout << n << endl;
+}
 
 
 int main() 
@@ -298,7 +496,32 @@ int main()
         }
     // }
 
+// ********** 7 *********
+    cin >> str;
+    func(str, "");
+    cout << count1 << endl; 
 
+/*************** 9 ****************/
+    string inp;
+    cin >> inp;
 
+    mappedStrings(inp, "");
+
+    /**************** 10 ***************/
+    int testCases;
+    cin >> testCases;
+    while(testCases--)
+    {
+        string str;
+        cin >> str;
+
+        cout << replacePi(str) << endl;
+    }
+    /************ 11 *************/
+    int n;
+    cin >> n;
+    
+    func(n, 'A','B');
+    
     return 0;
 }

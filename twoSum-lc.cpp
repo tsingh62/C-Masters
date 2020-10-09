@@ -59,21 +59,12 @@ class Solution {
  
     vector <int> x;
     x = s.twoSum(nums, target);
-    cout << x.front() << x.back()<< endl;
-    //  for(int i=0; i<nums.size(); i++)
-    //  {
-    //      cout << num[i] << " ";
-    //  }
-    //  cout << endl;
-
-    //  vector <int> nums = {2,7,11,15};
-    //  int target = 9;
-    //  Solution s;
-    // s.twoSum( copy(nums.begin(), nums.end(), ostream_iterator<int>(cout, "; ")));
-    // // copy(nums.begin(), nums.end(), ostream_iterator<int>(cout, "; "));
-    // cout << endl;
-
-    // return EXIT_SUCCESS;
+   //  cout << x.front() << x.back()<< endl;
+    for(int val : x)
+    {
+        cout << val << " ";
+    }
+    cout << endl;
 }
 
 
