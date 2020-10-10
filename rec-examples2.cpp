@@ -444,6 +444,25 @@ void func(int n, char source, char dest)
     func(n-1, temp, dest);
     cout << n << endl;
 }
+/****************** 12 *****************/
+vector<int> allIndices(const vector<int> &v, int key, int i, int idx)
+{
+    if (i == v.size())
+    {
+        return vector<int>(idx);
+    }
+
+    if (v[i] == key)
+    {
+        vector<int> remainingAns = allIndices(v, key, i + 1, idx + 1);
+        remainingAns[idx] = i;
+        return remainingAns;
+    }
+    else
+    {
+        return allIndices(v, key, i + 1, idx);
+    }
+}
 
 
 int main() 
@@ -522,6 +541,25 @@ int main()
     cin >> n;
     
     func(n, 'A','B');
+
+    /************* 12 *************/
+    int n;
+    cin >> n;
+    vector<int> v(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> v[i];
+    }
+
+    int key;
+    cin >> key;
+
+    vector<int> ans = allIndices(v, key, 0, 0);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
+
     
     return 0;
 }
