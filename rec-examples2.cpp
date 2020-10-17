@@ -205,9 +205,6 @@ bool subsetSumEasy(const vector<int> &v, int i = 0, int sum = 0, bool included =
 /************************** 5 ******************************/
 // Quick sort
 
-#include<iostteam>
-using namespace std;
-// Quick sort --
 
 // function for doing partition in array
 long long int partition(long long int a[],long long int be,long long int end)
@@ -368,7 +365,7 @@ void mappedStrings(string inp, string out)
     int singleDigitNumber = inp[0] - '0'; // char to integer
     char ch = singleDigitNumber + 'A' - 1; // range from A t0 Z
     // adding single digit no to 
-    // char range a to z correspondingly
+    // char range A to Z correspondingly
     // to represent 1 to A, 2 to B and so on
     mappedStrings(inp.substr(1), out + ch);
 
@@ -463,7 +460,37 @@ vector<int> allIndices(const vector<int> &v, int key, int i, int idx)
         return allIndices(v, key, i + 1, idx);
     }
 }
+/********************* 13 *********************/
+#include<cmath>
 
+int strToInt(string str, int number)
+{
+    if (str.length() == 0)
+    {
+        return number;
+    }
+    char ch = str[0];
+    number = number + (ch - 48) * (int)pow(10, str.length() - 1);
+    /*In ASCII, '0' == 48, '1' == 49, and so on. Thus, '0' - 48 == 0, '1' - 48 == 1, and so on. 
+	That is, subtracting by 48 translates the char values '0'..'9' to the int values 0..9.*/
+    string ros = str.substr(1);
+    return strToInt(ros, number);
+}
+/*********************** 14 **********************/
+ bool SearchArray(vector<int> arr, int si)
+{
+	if(si == arr.size()-1)
+	{
+		return true;
+	}
+	
+	if(arr[si] > arr[si+1])
+	{
+		return false;
+	}
+	return SearchArray(arr, si+1);
+	
+}
 
 int main() 
 {
@@ -559,7 +586,23 @@ int main()
     {
         cout << ans[i] << " ";
     }
-
-    
+    /*************** 13 *****************/
+    string str;
+    cin >> str;
+    int ans = strToInt(str, 0);
+    cout << ans << endl;
     return 0;
+
+    /***************** 14 ******************/
+    int n;
+	cin >> n;
+	vector<int>arr(n);
+	for(int i=0; i<n; i++)
+	{
+		cin >> arr[i];
+	}
+	cout << boolalpha << SearchArray(arr, 0);
+	
+	/*C++ manipulator boolalpha function is used to set the output stream 
+	to display bool values as the strings "true" or "false"*/
 }

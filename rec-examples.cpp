@@ -491,6 +491,8 @@ void printMazePath(int sr, int sc, int er, int ec, string ans)
     printMazePath(sr+1, sc, er, ec, ans+(sc1));
     
 }
+// count the min steps to reduce 
+//  a number to one
 int reduceToOne(int n)
 {
     if(n == 1)
