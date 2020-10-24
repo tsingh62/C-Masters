@@ -13,6 +13,7 @@
         "vector": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "string": "cpp"
     }
 }
