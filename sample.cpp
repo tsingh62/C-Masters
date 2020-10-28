@@ -1,60 +1,23 @@
-#include<iostream>
+#include <iostream>
+#include <string>
 using namespace std;
 
-// palindromic substring
-class Solution
+int main() 
 {
-    public:
-    int countSubstrings(string str)
+    char str[1000];
+    int nstr[2000];
+
+    cin>>str;
+
+    int i=1;
+    
+    cout<<str[0];
+    
+    while(str[i]!='\0')
     {
-        int count = 0;
-
-        for(int i=0; i<str.length(); i++)
-        {
-            //odd length
-            int left = i;
-            int right = i;
-            while(left>=0 && right <str.length())
-            {
-                if(str[left]==str[right])
-                {
-                    count++;
-                    left--;
-                    right++;
-                }
-                else
-                {
-                    break;
-                }
-                
-            }
-            // even length
-            left = i;
-            right = i+1;
-            while(str[left] >=0 && str[right]<str.length())
-            {
-                if(str[left]==str[right])
-                {
-                    count++;
-                    left--;
-                    right++;
-                }
-                else
-                {
-                    break;
-                }
-                
-            }
-        }
-        return count;
+        nstr[i]=int(str[i])-int(str[i-1]);
+        cout<<nstr[i]<<str[i];
+        i++;
     }
-};
-
-int main()
-{
-    Solution s;
-    string str;
-    cin >>str;
-    cout << s.countSubstrings(str) << endl;
     return 0;
 }

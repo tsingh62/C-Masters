@@ -26,6 +26,8 @@ class Solution
             // kadannes also for min sum 
             currMinSum = min(currMinSum+arr[i], arr[i]);
             minSum = min(minSum, currMinSum); 
+
+             total += arr[i];
         }
         if(maxSum > (total - minSum))
         {

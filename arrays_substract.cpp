@@ -42,6 +42,8 @@ int main()
     while(k>=0)
     {
         int d = 0;
+        // if i becomes -1 the arr[i] will becomes 0
+        // else i >=0 will have the value of i in arr[i]
         int arr1val = i >= 0? arr1[i] : 0; 
         // taking a2 here as the bigger array
         if(arr2[j] + carry >= arr1val) // arr1val instead of arr[i]

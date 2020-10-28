@@ -106,6 +106,33 @@ int main()
            }
        }
    }
+  //---------------------------------------------------//
+   // Target sum pairs
+   
+   void targetSum(int *arr, int n, int target)
+{
+    sort(arr, arr + n);
+    int left = 0;
+    int right = n - 1;
+    while (left < right)
+    {
+        int sum = arr[left] + arr[right];
+        if (sum > target)
+        {
+            right--;
+        }
+        else if (sum < target)
+        {
+            left++;
+        }
+        else
+        {
+            cout << arr[left] << " and " << arr[right] << endl;
+            left++;
+            right--;
+        }
+    }
+}
     
 }*/
 
