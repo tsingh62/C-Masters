@@ -263,7 +263,7 @@ Constraints
 None
 
 Output Format
-Print all the subsequences in a space separated manner and isplay the total no. of subsequences.
+Print all the subsequences in a space separated manner and display the total no. of subsequences.
 
 Sample Input
 abcd

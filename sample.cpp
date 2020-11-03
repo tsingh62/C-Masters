@@ -1,23 +1,32 @@
-#include <iostream>
-#include <string>
+#include<iostream>
 using namespace std;
-
-int main() 
+#include<vector>
+int main()
 {
-    char str[1000];
-    int nstr[2000];
+    int arr1[]={1,3,4,5,7};
+    int arr2[]={2,3,5,6};
+    int n = sizeof(arr1)/sizeof(int);
+    int m = sizeof(arr2)/sizeof(int);
 
-    cin>>str;
+    vector<int> ans;
 
-    int i=1;
-    
-    cout<<str[0];
-    
-    while(str[i]!='\0')
+    bool duplicate = false;
+    int j = 0;
+    for(int i=0; i<n; i++)
     {
-        nstr[i]=int(str[i])-int(str[i-1]);
-        cout<<nstr[i]<<str[i];
-        i++;
+        if(arr1[i]==arr2[j])
+        {
+            duplicate = true;
+        }
+        if(duplicate)
+        {
+            ans.push_back(arr1[i]);
+        }
+        j++;
     }
-    return 0;
+    for(int i=0; i<n; i++)
+    {
+        cout << ans[i] << " ";
+    }
+
 }

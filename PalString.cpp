@@ -47,48 +47,45 @@ int main ()
 #include<iostream>
 using namespace std;
 
-bool isPal(string str) 
+bool func(string str)
 {
-   if(str.length()-1 == 1)
+    int n = str.length();
+    if(str.length()-1 == 1 )
     {
         return true;
     }
 
-    int left = 0;
-    int right = str.length()-1;
-    char ch = str[0];
+    bool ch = str[0];
     string subproblem = str.substr(1);
-    
+    bool rec = func(subproblem);
+
+    int left = 0;
+    int right = n-1;
     while(left < right)
     {
-        if(str[left]!=str[right])
+        if(str[left] != str[right])
         {
             return false;
         }
         else
         {
-            bool rec = isPal(subproblem);
-            if(rec == true)
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            }
-            
-            return rec;
+        if((ch + rec)==true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
         
+        }
     }
     return true;
-    
 }
 int main()
 {
     string str;
     cin >> str;
-    cout << boolalpha << isPal(str) << endl;
-    return 0;
+    cout << boolalpha << func(str) << endl;
 }
 */
