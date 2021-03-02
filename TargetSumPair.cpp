@@ -22,7 +22,7 @@ int TargetSumPair(int arr[], int n, int target)
        }
        else
        {
-           count ++;
+           count++;
            left++;
            right--;
        }
@@ -38,6 +38,7 @@ int main()
    int arr[]={10,12,3,4,5,6};
    int n=6;
    int target=15;
+    
    cout << TargetSumPair(arr, n, target) << endl;
    return 0;
    

@@ -18,9 +18,9 @@ void maxSlidingWindown(int arr[], int n, int k)
        // after this work is done - either the stack is empty
        // or the max value is found push_back your index
        q.push_back(i);
-    // Now the maz value is in the front of the deque
+    // Now the max value is in the front of the deque
     }
-    // Now the maz value is in the front of the deque
+    // Now the max value is in the front of the deque
     for(int i=k; i<n; i++)
     {
         cout << arr[q.front()] << " ";

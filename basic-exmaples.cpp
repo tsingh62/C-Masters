@@ -270,3 +270,42 @@ int main()
 
     return 0;
 }
+
+/*
+// sum of odd placed and even placed digits
+    int main(n){
+      int odd=0,even=0;  
+      int r=0;int count=1;  
+     while(n!=0){
+        r=n%10;
+        n=n/10;
+        if(count%2==0) {
+            even=even+r;
+        }else{
+             odd=odd+r;
+        }
+        count++;  
+    }
+    cout << odd << " " << evdn << endl;
+
+}
+// print till sum becomes zero
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int sum=0;
+    int n;
+
+    while(1){
+        cin >> n;
+        sum += n;
+        if(sum<0)
+            break;
+        cout << n << '\n';
+    }
+
+    return 0;
+}
+*/

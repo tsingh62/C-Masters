@@ -34,13 +34,16 @@ int lis(int arr[], int n)
 
 int main()
 {
-    int n;
-    cin >>n;
-    int arr[n];
-    for(int i=0; i<n; i++)
-    {
-        cin >> arr[i];
-    }
+    // int n;
+    // cin >>n;
+    // int arr[n];
+    // for(int i=0; i<n; i++)
+    // {
+    //     cin >> arr[i];
+    // }
+   int arr[] = {2,6,1,9,4,5,3};
+  // int arr[] = {1,9,3,10,4,20,2};
+      int n = sizeof(arr)/sizeof(int);
     cout << lis(arr, n) << endl;
     return 0;
 }

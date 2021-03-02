@@ -27,3 +27,35 @@ cout << endl;
 return 0;
 
 }
+
+
+/*
+
+void func(int arr[], int n, int k)
+{
+    int ans=0;
+    sort(arr, arr+n);
+    int left = 0;
+    int right = n-1;
+    while(left <= right)
+    {
+        if(arr[left]+arr[right]>k){
+             right--;
+            
+        }
+        else 
+        {
+            ans +=(right - left);
+            left++; right--;
+        }
+    }
+    cout << ans << endl;
+}
+int main()
+{
+    int arr[] = {1, 5, 7, 1};
+    int n = 4;
+    int k = 6;
+    func(arr, n, k);
+}
+*/

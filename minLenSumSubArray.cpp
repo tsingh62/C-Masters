@@ -2,45 +2,42 @@
 #include<iostream>
 using namespace std;
 
-int minSubArray(int arr[], int s, int n)
+int minLenSumSubArray(int arr[], int n, int s)
 {
     int left =0;
+    // the movement of left pointer is 
+    // conditional
     int right =0;
+    // the right pointer will increment 
+    // all the time
     int minLen=INT_MAX;
     int sum=0;
 
-    while(right<n)
+    while(right < n)
     {
         sum = sum+arr[right];
-
-        if(sum>=s)
+        while(sum > s)
         {
-            int len = right-len+1;
+            int len = right - left + 1;
             if(len < minLen)
             {
-                minLen=len;
+                minLen = len;
             }
-
             sum = sum-arr[left];
             left++;
         }
-        right++;
+       right++;
     }
-    if(minLen==INT_MAX)
-    {
-        return 0;
-    }
+    if(minLen == INT_MAX)
+    return 0;
 
-    cout << endl;
     return minLen;
+    
 }
-
-
 int main()
 {
-    int arr[]={2,3,1,2,4};
+    int arr [] ={1, 4, 45, 6, 0, 19};
     int n = sizeof(arr)/sizeof(int);
-    int s=7;
-    cout << minSubArray(arr,n,s);
-    return 0;
+    int s = 51;
+    cout << minLenSumSubArray(arr, n, s) << endl;
 }
