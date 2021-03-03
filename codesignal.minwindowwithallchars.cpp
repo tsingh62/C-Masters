@@ -2,6 +2,7 @@
 using namespace std;
 #include<vector>
 #include<unordered_map>
+
 string minWindow(string s, string t) {
         // An integer array to store the fequency of chars from t in S
         std::vector<int> freq(126, 0);
